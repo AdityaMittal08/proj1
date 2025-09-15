@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Sort Analyzer - FINAL</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="theme-switcher">
+            <label class="toggle-label">
+                <i class="fas fa-sun"></i>
+                <input type="checkbox" id="dark-mode-toggle">
+                <div class="toggle-switch"></div>
+                <i class="fas fa-moon"></i>
+            </label>
+        </div>
+        <div class="header-content">
+            <h1><i class="fas fa-chart-bar"></i>Smart Sort Analyzer</h1>
+            <p class="subtitle">Advanced algorithm visualization with intelligent recommendations & code generation</p>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Left Panel: Controls -->
+        <aside class="control-panel glass-card">
+            <!-- Mode Selector -->
+            <div class="mode-selector">
+                <h3><i class="fas fa-cogs"></i> Analysis Mode</h3>
+                <div class="mode-buttons">
+                    <button class="mode-btn active" data-mode="single">
+                        <i class="fas fa-play"></i>
+                        <span>Single Algorithm</span>
+                    </button>
+                    <button class="mode-btn" data-mode="compare">
+                        <i class="fas fa-columns"></i>
+                        <span>Compare Algorithms</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Input Section -->
+            <div class="input-section">
+                <label><i class="fas fa-list-ol"></i> Enter Your Data</label>
+                <div class="input-group">
+                    <input type="text" id="list-input" placeholder="64, 34, 25, 12, 22..." 
+                           autocomplete="off" spellcheck="false">
+                    <button id="generate-random-btn" class="icon-btn" title="Generate Random Array">
+                        <i class="fas fa-dice"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Advanced Data Generation -->
+            <div class="data-generation-section">
+                <h4><i class="fas fa-magic"></i> Smart Data Generation</h4>
+                <div class="generation-buttons">
+                    <button class="gen-btn" data-type="nearly-sorted">
+                        <i class="fas fa-sort-amount-up"></i>
+                        <span>Nearly Sorted</span>
+                    </button>
+                    <button class="gen-btn" data-type="reverse">
+                        <i class="fas fa-sort-amount-down"></i>
+                        <span>Reverse Sorted</span>
+                    </button>
+                    <button class="gen-btn" data-type="few-unique">
+                        <i class="fas fa-copy"></i>
+                        <span>Few Unique</span>
+                    </button>
+                    <button class="gen-btn" data-type="all-equal">
+                        <i class="fas fa-equals"></i>
+                        <span>All Equal</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Algorithm Selection for Comparison Mode -->
+            <div class="comparison-selectors hidden" id="comparison-selectors">
+                <h4><i class="fas fa-balance-scale"></i> Select Algorithms</h4>
+                <div class="selector-group">
+                    <div class="selector">
+                        <label>Algorithm 1:</label>
+                        <select id="algorithm1-select">
+                            <option value="bubble">Bubble Sort</option>
+                            <option value="selection">Selection Sort</option>
+                            <option value="insertion">Insertion Sort</option>
+                            <option value="merge">Merge Sort</option>
+                            <option value="quick" selected>Quick Sort</option>
+                            <option value="heap">Heap Sort</option>
+                        </select>
+                    </div>
+                    <div class="selector">
+                        <label>Algorithm 2:</label>
+                        <select id="algorithm2-select">
+                            <option value="bubble">Bubble Sort</option>
+                            <option value="selection">Selection Sort</option>
+                            <option value="insertion">Insertion Sort</option>
+                            <option value="merge" selected>Merge Sort</option>
+                            <option value="quick">Quick Sort</option>
+                            <option value="heap">Heap Sort</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Speed Control -->
+            <div class="speed-section">
+                <label><i class="fas fa-tachometer-alt"></i> Animation Speed</label>
+                <div class="slider-container">
+                    <span class="slider-label">Slow</span>
+                    <input type="range" id="speed-slider" min="100" max="500" value="300">
+                    <span class="slider-label">Fast</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Center Panel: Visualization -->
+        <main class="visualization-section">
+            <!-- Recommendation Banner -->
+            <div id="recommendation-banner" class="recommendation-banner hidden">
+                <div class="rec-content">
+                    <div class="rec-main">
+                        <i class="fas fa-lightbulb"></i>
+                        <div class="rec-text">
+                            <strong>Recommended: <span id="rec-algo">Quick Sort</span></strong>
+                            <div class="rec-reason" id="rec-reason">Best for random data distribution</div>
+                        </div>
+                    </div>
+                    <div class="rec-metrics">
+                        <div class="confidence-score">
+                            <span class="label">Confidence:</span>
+                            <span id="confidence-value">95%</span>
+                        </div>
+                        <div class="estimated-time">
+                            <span class="label">Est. Time:</span>
+                            <span id="time-estimate">~120ms</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="learn-more-btn" id="learn-more-btn">
+                    <i class="fas fa-info-circle"></i>
+                    Learn More
+                </button>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="action-controls">
+                <button id="analyze-sort-btn" class="primary-btn">
+                    <i class="fas fa-play"></i>
+                    Analyze & Sort
+                </button>
+                <div class="control-buttons">
+                    <button id="pause-resume-btn" class="control-btn" disabled>
+                        <i class="fas fa-pause"></i>
+                    </button>
+                    <button id="restart-btn" class="control-btn" disabled>
+                        <i class="fas fa-undo"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Single Mode Visualization -->
+            <div id="single-viz" class="viz-container glass-card">
+                <div class="viz-header">
+                    <h3><i class="fas fa-chart-line"></i> Algorithm Visualization</h3>
+                    <div class="legend">
+                        <!-- Legend items -->
+                        <div class="legend-item"><span class="legend-color" style="background: var(--bar-default)"></span><span>Unsorted</span></div>
+                        <div class="legend-item"><span class="legend-color" style="background: var(--bar-compare)"></span><span>Comparing</span></div>
+                        <div class="legend-item"><span class="legend-color" style="background: var(--bar-swap)"></span><span>Swapping</span></div>
+                        <div class="legend-item"><span class="legend-color" style="background: var(--bar-pivot)"></span><span>Pivot</span></div>
+                        <div class="legend-item"><span class="legend-color" style="background: var(--bar-sorted)"></span><span>Sorted</span></div>
+                    </div>
+                </div>
+                <div id="visualization-container">
+                    <div class="empty-state">
+                        <i class="fas fa-chart-bar"></i>
+                        <h4>Enter data to see the magic happen!</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Mode Visualization -->
+            <div id="compare-viz" class="viz-container glass-card hidden">
+                <div class="comparison-container">
+                    <div class="compare-panel">
+                        <div class="compare-header">
+                            <h4 id="algo1-title">Quick Sort</h4>
+                            <div class="compare-stats">
+                                <span>Comparisons: <span id="algo1-comparisons">0</span></span>
+                                <span>Swaps: <span id="algo1-swaps">0</span></span>
+                            </div>
+                        </div>
+                        <div id="visualization-container-1" class="compare-viz-container">
+                            <div class="empty-state"><i class="fas fa-chart-bar"></i><h5>Algorithm 1</h5></div>
+                        </div>
+                    </div>
+                    <div class="compare-divider"><div class="vs-badge">VS</div></div>
+                    <div class="compare-panel">
+                        <div class="compare-header">
+                            <h4 id="algo2-title">Merge Sort</h4>
+                            <div class="compare-stats">
+                                <span>Comparisons: <span id="algo2-comparisons">0</span></span>
+                                <span>Swaps: <span id="algo2-swaps">0</span></span>
+                            </div>
+                        </div>
+                        <div id="visualization-container-2" class="compare-viz-container">
+                             <div class="empty-state"><i class="fas fa-chart-bar"></i><h5>Algorithm 2</h5></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Panel: Info & Stats -->
+        <aside class="info-panel glass-card">
+            <!-- Algorithm Information -->
+            <div id="algorithm-info" class="algorithm-info hidden">
+                <h3><i class="fas fa-info-circle"></i> <span id="algo-title">Quick Sort</span></h3>
+                <p class="algo-description" id="algo-description">
+                    Divide-and-conquer algorithm...
+                </p>
+                
+                <div class="complexity-grid">
+                    <!-- Complexity items -->
+                     <div class="complexity-item"><span class="label">Best Case:</span><span class="value" id="best-case">O(n log n)</span></div>
+                    <div class="complexity-item"><span class="label">Average:</span><span class="value" id="average-case">O(n log n)</span></div>
+                    <div class="complexity-item"><span class="label">Worst Case:</span><span class="value" id="worst-case">O(n²)</span></div>
+                    <div class="complexity-item"><span class="label">Space:</span><span class="value" id="space-case">O(log n)</span></div>
+                </div>
+
+                <!-- Code Generation Section -->
+                <div class="code-generation">
+                    <h4><i class="fas fa-code"></i> Generate Code</h4>
+                    <div class="code-buttons">
+                        <!-- Code buttons -->
+                        <button class="code-btn" data-lang="python"><i class="fab fa-python"></i><span>Python</span></button>
+                        <button class="code-btn" data-lang="cpp"><i class="fas fa-code"></i><span>C++</span></button>
+                        <button class="code-btn" data-lang="java"><i class="fab fa-java"></i><span>Java</span></button>
+                        <button class="code-btn" data-lang="javascript"><i class="fab fa-js"></i><span>JavaScript</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Analysis Stats -->
+            <div class="stats-panel">
+                 <div class="stats-header"><h3><i class="fas fa-chart-pie"></i> Live Analysis</h3></div>
+                <div class="stats-grid">
+                    <!-- Stat items -->
+                    <div class="stat-item"><span class="stat-value" id="comparisons-count">0</span><span class="stat-label">Comparisons</span></div>
+                    <div class="stat-item"><span class="stat-value" id="swaps-count">0</span><span class="stat-label">Array Writes</span></div>
+                    <div class="stat-item"><span class="stat-value" id="array-size">0</span><span class="stat-label">Array Size</span></div>
+                    <div class="stat-item"><span class="stat-value" id="sortedness-score">0%</span><span class="stat-label">Sortedness</span></div>
+                </div>
+
+                <!-- Step-by-step Explanation -->
+                <div class="explanation-section">
+                    <h4><i class="fas fa-lightbulb"></i> Current Step</h4>
+                    <div class="explanation-text" id="step-explanation">
+                        Welcome! Click "Analyze & Sort" to begin.
+                    </div>
+                </div>
+
+                <!-- Variables Display -->
+                <div class="variables-section">
+                    <h4><i class="fas fa-code"></i> Variables</h4>
+                    <div class="variables-grid" id="variable-display">
+                        <!-- Variable boxes -->
+                        <div class="variable-box"><strong>i:</strong> <span id="var-i-value">-</span></div>
+                        <div class="variable-box"><strong>j:</strong> <span id="var-j-value">-</span></div>
+                        <div class="variable-box"><strong>key:</strong> <span id="var-key-value">-</span></div>
+                        <div class="variable-box"><strong>minIdx:</strong> <span id="var-minIndex-value">-</span></div>
+                        <div class="variable-box"><strong>low:</strong> <span id="var-low-value">-</span></div>
+                        <div class="variable-box"><strong>high:</strong> <span id="var-high-value">-</span></div>
+                        <div class="variable-box"><strong>pivot:</strong> <span id="var-pivot-value">-</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History Panel -->
+            <!-- <div class="history-panel">
+                <h4><i class="fas fa-history"></i> Recent Analysis</h4>
+                <div class="history-list" id="history-list">
+                    <div class="history-empty"><i class="fas fa-clock"></i><span>No recent analysis</span></div>
+                </div>
+            </div> -->
+        </aside>
+    </div>
+
+    <!-- Modals -->
+    <div id="info-modal" class="modal hidden">
+        <div class="modal-content glass-card">
+            <div class="modal-header"><h3><i class="fas fa-graduation-cap"></i> Algorithm Deep Dive</h3><button class="close-btn" id="close-modal"><i class="fas fa-times"></i></button></div>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+    <div id="code-modal" class="modal hidden">
+        <div class="modal-content glass-card">
+             <div class="modal-header"><h3><i class="fas fa-code"></i> Generated Code - <span id="code-lang-title"></span></h3><button class="close-btn" id="close-code-modal"><i class="fas fa-times"></i></button></div>
+            <div class="modal-body">
+                <div class="code-container">
+                    <div class="code-header"><span id="code-filename"></span><button class="copy-btn" id="copy-code-btn"><i class="fas fa-copy"></i>Copy Code</button></div>
+                    <pre><code id="generated-code" class="language-python"></code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Made with <i class="fas fa-heart"></i> for algorithm education • Smart Sort Analyzer</p>
+    </footer>
+
+    <!-- FINAL SCRIPT -->
+    <script src="script.js"></script>
+</body>
+</html>
