@@ -1,14 +1,9 @@
-/* Enhanced Smart Sort Analyzer - Fixed Layout Styles */
-
-/* --- CSS Variables & Theming --- */
 :root {
-    /* Primary Colors */
     --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     --accent-color: #4f46e5;
     --accent-hover: #4338ca;
 
-    /* Light Theme */
     --bg-primary: #f8fafc;
     --bg-secondary: #ffffff;
     --bg-tertiary: #f1f5f9;
@@ -20,12 +15,10 @@
     --shadow-medium: rgba(0, 0, 0, 0.1);
     --shadow-heavy: rgba(0, 0, 0, 0.25);
 
-    /* Glass Effect */
     --glass-bg: rgba(255, 255, 255, 0.918);
     --glass-border: rgba(255, 255, 255, 0.411);
     --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
 
-    /* Visualization Colors */
     --bar-default: #3b82f6;
     --bar-compare: #f59e0b;
     --bar-swap: #ef4444;
@@ -33,12 +26,10 @@
     --bar-sorted: #10b981;
     --bar-highlight: #06b6d4;
 
-    /* Animation */
     --transition-fast: 0.15s ease;
     --transition-normal: 0.3s ease;
     --transition-slow: 0.5s ease;
 
-    /* Spacing */
     --space-xs: 0.25rem;
     --space-sm: 0.5rem;
     --space-md: 1rem;
@@ -46,7 +37,6 @@
     --space-xl: 2rem;
     --space-2xl: 3rem;
 
-    /* Border Radius */
     --radius-sm: 0.375rem;
     --radius-md: 0.5rem;
     --radius-lg: 0.75rem;
@@ -54,7 +44,6 @@
     --radius-2xl: 1.5rem;
 }
 
-/* Dark Theme Variables */
 [data-theme="dark"] {
     --bg-primary: #0f172a;
     --bg-secondary: #1e293b;
@@ -77,7 +66,6 @@
     --bar-highlight: #22d3ee;
 }
 
-/* --- Reset & Base Styles --- */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -94,7 +82,6 @@ body {
     overflow-x: hidden;
 }
 
-/* --- Animated Background --- */
 body::before {
     content: '';
     position: fixed;
@@ -116,7 +103,6 @@ body::before {
     66% { transform: translateX(30px) translateY(-30px) rotate(-1deg); }
 }
 
-/* --- Header --- */
 header {
     background: var(--primary-gradient);
     padding: var(--space-xl) var(--space-lg);
@@ -171,7 +157,6 @@ header::before {
     font-weight: 300;
 }
 
-/* --- Theme Switcher --- */
 .theme-switcher {
     position: absolute;
     top: var(--space-lg);
@@ -232,7 +217,6 @@ header::before {
     transform: translateX(20px);
 }
 
-/* --- Main Container - FIXED LAYOUT --- */
 .main-container {
     max-width: 1600px;
     margin: 0 auto;
@@ -244,7 +228,6 @@ header::before {
     min-height: calc(100vh - 200px);
 }
 
-/* --- Glass Card Component --- */
 .glass-card {
     background: var(--glass-bg);
     backdrop-filter: blur(16px) saturate(180%);
@@ -255,7 +238,6 @@ header::before {
     padding: var(--space-lg);
 }
 
-/* --- Control Panel (Left) --- */
 .control-panel {
     display: flex;
     flex-direction: column;
@@ -265,7 +247,6 @@ header::before {
     top: var(--space-lg);
 }
 
-/* --- Mode Selector --- */
 .mode-selector h3 {
     display: flex;
     align-items: center;
@@ -318,7 +299,6 @@ header::before {
     font-size: 0.8rem;
 }
 
-/* --- Input Section --- */
 .input-section {
     display: flex;
     flex-direction: column;
@@ -377,7 +357,6 @@ header::before {
     color: var(--accent-color);
 }
 
-/* --- Data Generation Section --- */
 .data-generation-section h4 {
     display: flex;
     align-items: center;
@@ -420,7 +399,6 @@ header::before {
     font-size: 1rem;
 }
 
-/* --- Comparison Selectors --- */
 .comparison-selectors h4 {
     display: flex;
     align-items: center;
@@ -466,7 +444,6 @@ header::before {
     box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
-/* --- Speed Section --- */
 .speed-section {
     display: flex;
     flex-direction: column;
@@ -520,7 +497,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
     box-shadow: 0 0 10px rgba(79, 70, 229, 0.4);
 }
 
-/* --- Visualization Section (Center) --- */
 .visualization-section {
     display: flex;
     flex-direction: column;
@@ -528,7 +504,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
     min-height: 600px;
 }
 
-/* --- Recommendation Banner --- */
 .recommendation-banner {
     background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(34, 197, 94, 0.1) 100%);
     border: 2px solid rgba(16, 185, 129, 0.3);
@@ -621,7 +596,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
     opacity: 0.7;
 }
 
-/* --- Action Controls --- */
 .action-controls {
     display: flex;
     gap: var(--space-md);
@@ -695,7 +669,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
     cursor: not-allowed;
 }
 
-/* --- Visualization Container --- */
 .viz-container {
     flex: 1;
     display: flex;
@@ -718,7 +691,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
     color: var(--text-primary);
 }
 
-/* --- Legend --- */
 .legend {
     display: flex;
     gap: var(--space-md);
@@ -739,7 +711,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
     border-radius: 2px;
 }
 
-/* --- Visualization Container - FIXED --- */
 #visualization-container,
 .compare-viz-container {
     height: 400px;
@@ -781,7 +752,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
     color: var(--text-secondary);
 }
 
-/* --- Comparison Mode --- */
 .comparison-container {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
@@ -829,7 +799,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
     box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3);
 }
 
-/* --- Bars - IMPROVED --- */
 .bar {
     background: var(--bar-default);
     border-radius: var(--radius-sm) var(--radius-sm) 0 0;
@@ -861,7 +830,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
     white-space: nowrap;
 }
 
-/* --- Info Panel (Right) --- */
 .info-panel {
     display: flex;
     flex-direction: column;
@@ -871,7 +839,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
     top: var(--space-lg);
 }
 
-/* --- Algorithm Info --- */
 .algorithm-info h3 {
     color: var(--text-primary);
     margin-bottom: var(--space-sm);
@@ -918,7 +885,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
     font-size: 0.8rem;
 }
 
-/* --- Code Generation --- */
 .code-generation h4 {
     display: flex;
     align-items: center;
@@ -961,7 +927,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
     font-size: 1rem;
 }
 
-/* --- Stats Panel --- */
 .stats-panel {
     display: flex;
     flex-direction: column;
@@ -1006,7 +971,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
     letter-spacing: 0.5px;
 }
 
-/* --- Explanation Section --- */
 .explanation-section h4 {
     display: flex;
     align-items: center;
@@ -1028,7 +992,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
     min-height: 60px;
 }
 
-/* --- Variables Section --- */
 .variables-section h4 {
     display: flex;
     align-items: center;
@@ -1211,7 +1174,6 @@ footer i {
     50% { transform: scale(1.1); }
 }
 
-/* --- Responsive Design --- */
 @media (max-width: 1400px) {
     .main-container {
         grid-template-columns: 300px 1fr 260px;

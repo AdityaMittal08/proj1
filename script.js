@@ -1,6 +1,4 @@
-// Enhanced Smart Sort Analyzer - COMPLETELY FIXED VERSION
 document.addEventListener("DOMContentLoaded", () => {
-  // --- DOM ELEMENTS ---
   const darkModeToggle = document.getElementById("dark-mode-toggle");
   const listInput = document.getElementById("list-input");
   const generateRandomBtn = document.getElementById("generate-random-btn");
@@ -9,16 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const restartBtn = document.getElementById("restart-btn");
   const speedSlider = document.getElementById("speed-slider");
 
-  // Mode selector elements
   const modeBtns = document.querySelectorAll(".mode-btn");
   const comparisonSelectors = document.getElementById("comparison-selectors");
   const algorithm1Select = document.getElementById("algorithm1-select");
   const algorithm2Select = document.getElementById("algorithm2-select");
 
-  // Data generation buttons
   const genBtns = document.querySelectorAll(".gen-btn");
 
-  // Visualization containers
   const singleViz = document.getElementById("single-viz");
   const compareViz = document.getElementById("compare-viz");
   const visualizationContainer = document.getElementById(
@@ -31,12 +26,10 @@ document.addEventListener("DOMContentLoaded", () => {
     "visualization-container-2"
   );
 
-  // Info elements
   const recommendationBanner = document.getElementById("recommendation-banner");
   const algorithmInfo = document.getElementById("algorithm-info");
   const variableDisplay = document.getElementById("variable-display");
 
-  // Display Elements
   const recAlgo = document.getElementById("rec-algo");
   const recReason = document.getElementById("rec-reason");
   const confidenceValue = document.getElementById("confidence-value");
@@ -48,28 +41,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const worstCase = document.getElementById("worst-case");
   const spaceCase = document.getElementById("space-case");
 
-  // Stats
   const comparisonsCount = document.getElementById("comparisons-count");
   const swapsCount = document.getElementById("swaps-count");
   const arraySize = document.getElementById("array-size");
   const sortednessScore = document.getElementById("sortedness-score");
   const stepExplanation = document.getElementById("step-explanation");
 
-  // Modals
   const infoModal = document.getElementById("info-modal");
   const codeModal = document.getElementById("code-modal");
   const learnMoreBtn = document.getElementById("learn-more-btn");
   const closeModalBtn = document.getElementById("close-modal");
   const closeCodeModalBtn = document.getElementById("close-code-modal");
 
-  // Code generation elements
   const codeBtns = document.querySelectorAll(".code-btn");
   const generatedCode = document.getElementById("generated-code");
   const codeLangTitle = document.getElementById("code-lang-title");
   const codeFilename = document.getElementById("code-filename");
   const copyCodeBtn = document.getElementById("copy-code-btn");
 
-  // Comparison elements
   const algo1Title = document.getElementById("algo1-title");
   const algo2Title = document.getElementById("algo2-title");
   const algo1Comparisons = document.getElementById("algo1-comparisons");
@@ -77,7 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const algo2Comparisons = document.getElementById("algo2-comparisons");
   const algo2Swaps = document.getElementById("algo2-swaps");
 
-  // --- STATE VARIABLES ---
   let animationSpeed = 300;
   let arrayToSort = [];
   let initialArrayState = [];
@@ -88,13 +76,13 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentSortExecutionId = 0;
   let pausePromiseResolver = null;
   let recommendedAlgorithm = null;
-  let currentMode = "single"; // 'single' or 'compare'
+  let currentMode = "single";
   let comparisonData = {
     algo1: { comparisons: 0, swaps: 0, time: 0 },
     algo2: { comparisons: 0, swaps: 0, time: 0 },
   };
 
-  // --- ALGORITHM DATA ---
+  //ALGORITHM DATA
   const ALGORITHMS = {
     bubble: {
       name: "Bubble Sort",
@@ -185,7 +173,6 @@ document.addEventListener("DOMContentLoaded", () => {
     heap: ["i", "j"],
   };
 
-  // --- COMPLETE CODE TEMPLATES ---
   const CODE_TEMPLATES = {
     python: {
       bubble: `def bubble_sort(arr):
@@ -697,7 +684,6 @@ if (typeof module !== 'undefined' && module.exports) {
     },
   };
 
-  // --- INITIALIZATION ---
   function init() {
     applySavedTheme();
     generateRandomArray();
@@ -723,7 +709,6 @@ if (typeof module !== 'undefined' && module.exports) {
       btn.addEventListener("click", handleDataGeneration);
     });
 
-    // FIXED: Code generation event listeners
     codeBtns.forEach((btn) => {
       btn.addEventListener("click", handleCodeGeneration);
     });
@@ -745,7 +730,6 @@ if (typeof module !== 'undefined' && module.exports) {
     algorithm2Select?.addEventListener("change", updateComparisonTitles);
   }
 
-  // --- MODE MANAGEMENT - FIXED ---
   function setupModeSelector() {
     updateModeDisplay();
   }
@@ -761,7 +745,6 @@ if (typeof module !== 'undefined' && module.exports) {
     currentMode = newMode;
     updateModeDisplay();
 
-    // Reset and update display for new mode
     if (arrayToSort.length > 0) {
       updateArrayDisplay();
     }
@@ -789,7 +772,6 @@ if (typeof module !== 'undefined' && module.exports) {
     }
   }
 
-  // --- DATA GENERATION ---
   function handleDataGeneration(e) {
     const type = e.target.closest(".gen-btn").dataset.type;
     let array = [];
@@ -863,7 +845,6 @@ if (typeof module !== 'undefined' && module.exports) {
     }
   }
 
-  // --- ARRAY GENERATION & INPUT ---
   function generateRandomArray() {
     const sizes = [
       8, 12, 15, 18, 22, 25, 34, 45, 46, 27, 7, 5, 50, 20, 19, 11, 13,
@@ -905,7 +886,6 @@ if (typeof module !== 'undefined' && module.exports) {
     updateUI();
   }
 
-  // --- IMPROVED INTELLIGENT ANALYSIS ENGINE ---
   function analyzeArray(array) {
     const analysis = {
       size: array.length,
@@ -959,7 +939,6 @@ if (typeof module !== 'undefined' && module.exports) {
     return uniqueValues <= Math.max(3, array.length / 5);
   }
 
-  // --- MUCH IMPROVED ALGORITHM SELECTION LOGIC ---
   function selectOptimalAlgorithm(analysis, array) {
     const {
       size,
@@ -972,7 +951,7 @@ if (typeof module !== 'undefined' && module.exports) {
     const maxInversions = (size * (size - 1)) / 2;
     const inversionRatio = inversions / maxInversions;
 
-    console.log("Array Analysis:", analysis); // Debug info
+    console.log("Array Analysis:", analysis);
 
     // Small random arrays - Bubble Sort
     if (size <= 12 && sortedness < 0.3) {
@@ -1089,7 +1068,6 @@ if (typeof module !== 'undefined' && module.exports) {
       sortednessScore.textContent = Math.round(analysis.sortedness * 100) + "%";
   }
 
-  // --- SORTING CONTROL ---
   async function handleAnalyzeAndSort() {
     if (isSorting) return;
 
@@ -1115,7 +1093,6 @@ if (typeof module !== 'undefined' && module.exports) {
     }
   }
 
-  // --- FIXED COMPARISON SORTING ---
   async function startComparisonSorting() {
     const algo1 = algorithm1Select?.value || "bubble";
     const algo2 = algorithm2Select?.value || "selection";
@@ -1143,13 +1120,11 @@ if (typeof module !== 'undefined' && module.exports) {
       const array1 = [...arrayToSort];
       const array2 = [...arrayToSort];
 
-      // Create bars for both containers
       createBarsForComparison();
 
       const bars1 = container1?.querySelectorAll(".bar") || [];
       const bars2 = container2?.querySelectorAll(".bar") || [];
 
-      // Run both algorithms simultaneously
       await Promise.all([
         executeSortingAlgorithm(algo1, array1, bars1, executionId, "algo1"),
         executeSortingAlgorithm(algo2, array2, bars2, executionId, "algo2"),
@@ -1206,7 +1181,6 @@ if (typeof module !== 'undefined' && module.exports) {
     executionId,
     comparisonId = null
   ) {
-    // If bars is null, get them from the single visualization container
     if (!bars) {
       bars = document.querySelectorAll("#visualization-container .bar");
     }
@@ -1294,7 +1268,7 @@ if (typeof module !== 'undefined' && module.exports) {
     clearVariables();
   }
 
-  // --- ALGORITHM IMPLEMENTATIONS ---
+  // ALGORITHM IMPLEMENTATIONS
   async function bubbleSort(array, bars, executionId, comparisonId = null) {
     const n = array.length;
 
@@ -1785,12 +1759,10 @@ if (typeof module !== 'undefined' && module.exports) {
   async function heapSort(array, bars, executionId, comparisonId = null) {
     const n = array.length;
 
-    // Build max heap
     for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
       await heapify(array, n, i, bars, executionId, comparisonId);
     }
 
-    // Extract elements from heap
     for (let i = n - 1; i > 0; i--) {
       if (executionId !== currentSortExecutionId)
         throw new Error("Sort Canceled");
@@ -2146,7 +2118,7 @@ if (typeof module !== 'undefined' && module.exports) {
   }
 
   function updateUI() {
-    // Update any UI elements that need refreshing
+    
   }
 
   // --- MODAL FUNCTIONS ---
@@ -2224,7 +2196,6 @@ if (typeof module !== 'undefined' && module.exports) {
     showModal(infoModal);
   }
 
-  // --- FIXED CODE GENERATION ---
   function handleCodeGeneration(e) {
     const lang = e.target.closest(".code-btn")?.dataset.lang;
     const algorithm =
@@ -2311,11 +2282,9 @@ if (typeof module !== 'undefined' && module.exports) {
       });
   }
 
-  // --- MESSAGE SYSTEM ---
   function showMessage(message, type = "info") {
     console.log(`${type.toUpperCase()}: ${message}`);
 
-    // Create toast notification
     const toast = document.createElement("div");
     toast.className = `toast toast-${type}`;
     toast.textContent = message;
@@ -2352,6 +2321,5 @@ if (typeof module !== 'undefined' && module.exports) {
     }, 3000);
   }
 
-  // Initialize the application
   init();
 });

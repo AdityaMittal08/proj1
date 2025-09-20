@@ -28,9 +28,7 @@
 
     <!-- Main Container -->
     <div class="main-container">
-        <!-- Left Panel: Controls -->
         <aside class="control-panel glass-card">
-            <!-- Mode Selector -->
             <div class="mode-selector">
                 <h3><i class="fas fa-cogs"></i> Analysis Mode</h3>
                 <div class="mode-buttons">
@@ -122,7 +120,6 @@
 
         <!-- Center Panel: Visualization -->
         <main class="visualization-section">
-            <!-- Recommendation Banner -->
             <div id="recommendation-banner" class="recommendation-banner hidden">
                 <div class="rec-content">
                     <div class="rec-main">
@@ -170,7 +167,6 @@
                 <div class="viz-header">
                     <h3><i class="fas fa-chart-line"></i> Algorithm Visualization</h3>
                     <div class="legend">
-                        <!-- Legend items -->
                         <div class="legend-item"><span class="legend-color" style="background: var(--bar-default)"></span><span>Unsorted</span></div>
                         <div class="legend-item"><span class="legend-color" style="background: var(--bar-compare)"></span><span>Comparing</span></div>
                         <div class="legend-item"><span class="legend-color" style="background: var(--bar-swap)"></span><span>Swapping</span></div>
@@ -220,7 +216,6 @@
 
         <!-- Right Panel: Info & Stats -->
         <aside class="info-panel glass-card">
-            <!-- Algorithm Information -->
             <div id="algorithm-info" class="algorithm-info hidden">
                 <h3><i class="fas fa-info-circle"></i> <span id="algo-title">Quick Sort</span></h3>
                 <p class="algo-description" id="algo-description">
@@ -228,18 +223,15 @@
                 </p>
                 
                 <div class="complexity-grid">
-                    <!-- Complexity items -->
                      <div class="complexity-item"><span class="label">Best Case:</span><span class="value" id="best-case">O(n log n)</span></div>
                     <div class="complexity-item"><span class="label">Average:</span><span class="value" id="average-case">O(n log n)</span></div>
                     <div class="complexity-item"><span class="label">Worst Case:</span><span class="value" id="worst-case">O(n²)</span></div>
                     <div class="complexity-item"><span class="label">Space:</span><span class="value" id="space-case">O(log n)</span></div>
                 </div>
 
-                <!-- Code Generation Section -->
                 <div class="code-generation">
                     <h4><i class="fas fa-code"></i> Generate Code</h4>
                     <div class="code-buttons">
-                        <!-- Code buttons -->
                         <button class="code-btn" data-lang="python"><i class="fab fa-python"></i><span>Python</span></button>
                         <button class="code-btn" data-lang="cpp"><i class="fas fa-code"></i><span>C++</span></button>
                         <button class="code-btn" data-lang="java"><i class="fab fa-java"></i><span>Java</span></button>
@@ -252,7 +244,6 @@
             <div class="stats-panel">
                  <div class="stats-header"><h3><i class="fas fa-chart-pie"></i> Live Analysis</h3></div>
                 <div class="stats-grid">
-                    <!-- Stat items -->
                     <div class="stat-item"><span class="stat-value" id="comparisons-count">0</span><span class="stat-label">Comparisons</span></div>
                     <div class="stat-item"><span class="stat-value" id="swaps-count">0</span><span class="stat-label">Array Writes</span></div>
                     <div class="stat-item"><span class="stat-value" id="array-size">0</span><span class="stat-label">Array Size</span></div>
@@ -271,7 +262,6 @@
                 <div class="variables-section">
                     <h4><i class="fas fa-code"></i> Variables</h4>
                     <div class="variables-grid" id="variable-display">
-                        <!-- Variable boxes -->
                         <div class="variable-box"><strong>i:</strong> <span id="var-i-value">-</span></div>
                         <div class="variable-box"><strong>j:</strong> <span id="var-j-value">-</span></div>
                         <div class="variable-box"><strong>key:</strong> <span id="var-key-value">-</span></div>
@@ -282,14 +272,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- History Panel -->
-            <!-- <div class="history-panel">
-                <h4><i class="fas fa-history"></i> Recent Analysis</h4>
-                <div class="history-list" id="history-list">
-                    <div class="history-empty"><i class="fas fa-clock"></i><span>No recent analysis</span></div>
-                </div>
-            </div> -->
         </aside>
     </div>
 
@@ -317,7 +299,6 @@
         <p>Made with <i class="fas fa-heart"></i> for algorithm education • Smart Sort Analyzer</p>
     </footer>
 
-    <!-- FINAL SCRIPT -->
     <script src="script.js"></script>
 </body>
 </html>
